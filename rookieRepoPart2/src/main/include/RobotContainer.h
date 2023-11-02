@@ -9,6 +9,7 @@
 
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
+#include "subsystems/Shooter.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -23,6 +24,8 @@ class RobotContainer {
 
   frc2::CommandPtr GetAutonomousCommand();
 
+  static constexpr int kShooterMotor{7};
+
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
   frc2::CommandXboxController m_driverController{
@@ -30,6 +33,10 @@ class RobotContainer {
 
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
+
+  WPI_TalonFX ShooterM1{kShooterMotor};
+  Shooter mShooter{ShooterM1};
+  
 
   void ConfigureBindings();
 };

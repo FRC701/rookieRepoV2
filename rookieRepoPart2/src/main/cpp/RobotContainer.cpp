@@ -8,10 +8,13 @@
 
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
+#include <frc/smartdashboard/SmartDashboard.h>
+#include "commands/ShooterRun.h"
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
-
+frc::SmartDashboard::PutData("Shoot", new ShooterRun(mShooter, 3000));
+frc::SmartDashboard::PutData("Shoot",new ShooterRun(mShooter, 2700) );
   // Configure the button bindings
   ConfigureBindings();
 }

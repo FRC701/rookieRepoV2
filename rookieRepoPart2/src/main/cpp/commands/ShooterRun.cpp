@@ -4,7 +4,9 @@
 
 #include "commands/ShooterRun.h"
 
-ShooterRun::ShooterRun() {
+ShooterRun::ShooterRun(Shooter& shooter, double Velocity)
+: mShooter(shooter)
+ {
   // Use addRequirements() here to declare subsystem dependencies.
 }
 
@@ -12,10 +14,14 @@ ShooterRun::ShooterRun() {
 void ShooterRun::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void ShooterRun::Execute() {}
+void ShooterRun::Execute() {
+  mShooter.SETspeed(Velocity);
+}
 
 // Called once the command ends or is interrupted.
-void ShooterRun::End(bool interrupted) {}
+void ShooterRun::End(bool interrupted) {
+  mShooter.SETspeed(0);
+}
 
 // Returns true when the command should end.
 bool ShooterRun::IsFinished() {

@@ -18,7 +18,7 @@
 class ShooterRun
     : public frc2::CommandHelper<frc2::CommandBase, ShooterRun> {
  public:
-  ShooterRun();
+  ShooterRun(Shooter& mShooter, double Velocity);
 
   void Initialize() override;
 
@@ -27,4 +27,8 @@ class ShooterRun
   void End(bool interrupted) override;
 
   bool IsFinished() override;
+
+  private:
+  Shooter& mShooter;
+  double Velocity;
 };
