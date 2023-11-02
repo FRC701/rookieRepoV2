@@ -6,6 +6,7 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
+#include "subsystems/Turret.h"
 
 /**
  * An example command.
@@ -17,16 +18,17 @@
 class TurretCommand
     : public frc2::CommandHelper<frc2::CommandBase, TurretCommand> {
  public:
-  TurretCommand();
+  TurretCommand(TurretCommand& skycastle);
 
   void Initialize() override;
 
   void Execute() override;
-
+ 
   void End(bool interrupted) override;
 
   bool IsFinished() override;
 
   private:
-  Turret& skycastle
-};
+  Turret& mSkycastle;
+    
+    };
