@@ -30,10 +30,10 @@ double motorRun(double MotorSpeed);
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-  WPI_TalonFX& MotorOne;
-  WPI_TalonFX& MotorTwo;
-  WPI_TalonFX& MotorThree;
-  WPI_TalonFX& MotorFour;
+  WPI_TalonFX& mFrontR;
+  WPI_TalonFX& mFrontL;
+  WPI_TalonFX& mBackR;
+  WPI_TalonFX& mBackL;
   frc::DifferentialDrive mDrive;
 };
 

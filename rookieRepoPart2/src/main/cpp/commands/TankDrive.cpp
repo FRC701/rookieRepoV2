@@ -15,10 +15,7 @@ TankDrive::TankDrive(DriveTrain& drivetrain,
 
 
 // Called when the command is initially scheduled.
-void TankDrive::Initialize() 
-{
-
-}
+void TankDrive::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void TankDrive::Execute() 

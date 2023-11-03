@@ -6,14 +6,14 @@
 
 
 DriveTrain::DriveTrain(WPI_TalonFX& ID1, WPI_TalonFX& ID2, WPI_TalonFX& ID3, WPI_TalonFX& ID4)
-        : MotorOne(ID1),
-          MotorTwo(ID2),
-          MotorThree(ID3),
-          MotorFour(ID4),
-          mDrive(MotorOne,MotorTwo)
+        : mFrontR(ID1),
+          mFrontL(ID2),
+          mBackR(ID3),
+          mBackL(ID4),
+          mDrive(mFrontR,mFrontL)
 {
-    MotorThree.Follow(MotorOne);
-    MotorFour.Follow(MotorTwo);
+    mBackR.Follow(mFrontR);
+    mBackL.Follow(mFrontL);
 
 }
 
@@ -27,34 +27,34 @@ void DriveTrain::TankDrive(double left, double right)
 
 double DriveTrain:: motorSpeed(double MotorSpeed)
 {
-    MotorOne.Set(MotorSpeed);
+    mFrontR.Set(MotorSpeed);
     return MotorSpeed;
 }
 
 double DriveTrain:: motorSpeed2(double MotorSpeed)
 {
-    MotorTwo.Set(MotorSpeed);
+    mFrontL.Set(MotorSpeed);
     return MotorSpeed;
 }
 
 double DriveTrain:: motorSpeed3(double MotorSpeed)
 {
-    MotorThree.Set(MotorSpeed);
+    mBackR.Set(MotorSpeed);
     return MotorSpeed;
 }
 
 double DriveTrain:: motorSpeed4(double MotorSpeed)
 {
-    MotorFour.Set(MotorSpeed);
+    mBackL.Set(MotorSpeed);
     return MotorSpeed;
 }
 
 double DriveTrain:: motorRun(double MotorSpeed)
 {
-    MotorOne.Set(MotorSpeed);
-    MotorTwo.Set(MotorSpeed);
-    MotorThree.Set(MotorSpeed);
-    MotorFour.Set(MotorSpeed);
+    mFrontR.Set(MotorSpeed);
+    mFrontL.Set(MotorSpeed);
+    mBackR.Set(MotorSpeed);
+    mBackL.Set(MotorSpeed);
     return MotorSpeed;
 }
 
