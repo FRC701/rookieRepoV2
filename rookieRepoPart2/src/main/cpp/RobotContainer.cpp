@@ -8,13 +8,19 @@
 
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
-
+#include <frc/smartdashboard/SmartDashboard.h>
+#include "commands/ArmRun.h"
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
+
+frc::SmartDashboard::PutData("MoveArm", new ArmRun(mArm, 242));
+frc::SmartDashboard::PutData("MovementArm", new ArmRun(mArm, 678));
 
   // Configure the button bindings
   ConfigureBindings();
 }
+
+
 
 void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here

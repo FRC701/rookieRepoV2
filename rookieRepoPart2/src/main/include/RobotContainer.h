@@ -9,7 +9,7 @@
 
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
-
+#include "subsystems/Arm.h"
 /**
  * This class is where the bulk of the robot should be declared.  Since
  * Command-based is a "declarative" paradigm, very little robot logic should
@@ -23,6 +23,8 @@ class RobotContainer {
 
   frc2::CommandPtr GetAutonomousCommand();
 
+  static constexpr int kArmMotor{4};
+
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
   frc2::CommandXboxController m_driverController{
@@ -30,6 +32,9 @@ class RobotContainer {
 
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
+
+WPI_TalonFX ArmMotor{kArmMotor};
+Arm mArm{ArmMotor};
 
   void ConfigureBindings();
 };
