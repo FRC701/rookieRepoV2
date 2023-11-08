@@ -18,7 +18,7 @@
 class ActivateIntake
     : public frc2::CommandHelper<frc2::CommandBase, ActivateIntake> {
  public:
-  ActivateIntake(Intake& mIntake);
+  ActivateIntake(Intake& mIntake, double MotorSpeed);
 
   void Initialize() override;
 
@@ -30,4 +30,5 @@ class ActivateIntake
 
   private:
   Intake& mIntake;
+  double MotorSpeed;
 };

@@ -4,7 +4,7 @@
 
 #include "commands/ActivateIntake.h"
 
-ActivateIntake::ActivateIntake(Intake& intake) 
+ActivateIntake::ActivateIntake(Intake& intake, double MotorSpeed) 
 :mIntake(intake)
 {
   // Use addRequirements() here to declare subsystem dependencies.
@@ -15,7 +15,7 @@ void ActivateIntake::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void ActivateIntake::Execute() {
-  mIntake.setSpeed(1);
+  mIntake.setSpeed(MotorSpeed);
 }
 
 // Called once the command ends or is interrupted.

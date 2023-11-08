@@ -8,10 +8,13 @@
 
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
+#include "commands/ActivateIntake.h"
+#include <frc/smartdashboard/SmartDashboard.h>
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
-
+  frc::SmartDashboard::PutData("IntakeButton",new ActivateIntake(mIntake, 5));
+  frc::SmartDashboard::PutData("IntakeButton",new ActivateIntake(mIntake, 8));
   // Configure the button bindings
   ConfigureBindings();
 }
