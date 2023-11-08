@@ -13,7 +13,7 @@
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
-  frc::SmartDashboard::Pubdata("Turret", new Turret(skycastle));
+  frc::SmartDashboard::PutData("Turret", new Turret(skycastle));
   // Configure the button bindings
   ConfigureBindings();
 }
