@@ -8,9 +8,18 @@
 
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
+#include "commands/TankDrive.h"
 
 RobotContainer::RobotContainer() {
-  // Initialize all of your commands and subsystems here
+  // Initialize all of your commands and subsystems 
+  mDriveTrain.SetDefaultCommand
+   (
+    TankDrive(
+      mDriveTrain,
+      [this] { return -driver.GetLeftY(); },
+      [this] { return -driver.GetRightY();}
+    )
+   );
 
   // Configure the button bindings
   ConfigureBindings();
