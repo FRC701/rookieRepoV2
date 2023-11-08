@@ -18,7 +18,7 @@
 class TurretCommand
     : public frc2::CommandHelper<frc2::CommandBase, TurretCommand> {
  public:
-  TurretCommand(TurretCommand& skycastle);
+  TurretCommand(Turret& skycastle);
 
   void Initialize() override;
 

@@ -8,10 +8,12 @@
 
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
+#include "commands/TurretCommand.h"
+#include <frc/smartdashboard/SmartDashboard.h>
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
-
+  frc::SmartDashboard::Pubdata("Turret", new Turret(skycastle));
   // Configure the button bindings
   ConfigureBindings();
 }

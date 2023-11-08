@@ -4,7 +4,7 @@
 
 #include "commands/TurretCommand.h"
 
-TurretCommand::TurretCommand(TurretCommand& skycastle)
+TurretCommand::TurretCommand(Turret& skycastle)
 : mSkycastle(skycastle)
  {
   // Use addRequirements() here to declare subsystem dependencies.
@@ -16,11 +16,14 @@ void TurretCommand::Initialize() {}
 // Called repeatedly when this Command is scheduled to run
 void TurretCommand::Execute() 
 {
-  mSkycastle.Spinspeed();
+  mSkycastle.Spinspeed(1);
 }
 
 // Called once the command ends or is interrupted.
-void TurretCommand::End(bool interrupted);
+void TurretCommand::End(bool interrupted)
+{
+  mSkycastle.Spinspeed(0);
+}
 
 // Returns true when the command should end.
 bool TurretCommand::IsFinished() {
