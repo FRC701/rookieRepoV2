@@ -4,10 +4,11 @@
 
 #include "subsystems/Arm.h"
 
-Arm::Arm(WPI_TalonFX& ID1)
+Arm::Arm(WPI_TalonFX& ID1, WPI_CANCoder& ID2)
 :ArmMotor(ID1)
+,ArmCanCoder(ID2)
 {
-
+    ArmMotor.ConfigRemoteFeedbackFilter(ArmCanCoder, 0);
 }
 // This method will be called once per scheduler run
 void Arm::Periodic() {}
