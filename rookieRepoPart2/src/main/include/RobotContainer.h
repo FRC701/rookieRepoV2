@@ -10,9 +10,10 @@
 
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
+#include "subsystems/Turret.h"
 
 #include "subsystems/Intake.h"
-=======
+
 #include "subsystems/DriveTrain.h"
 
 /**
@@ -36,6 +37,7 @@ class RobotContainer {
   static constexpr int kBackR{2};
   static constexpr int kBackL{3};
 
+  static constexpr int kTurret{4};
 
  private:
   frc2::CommandXboxController m_driverController{
@@ -45,6 +47,10 @@ class RobotContainer {
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
 
+
+  WPI_TalonFX skycastle{kTurret};
+  Turret mTurret{skycastle};
+
   WPI_TalonFX IntakeMotor{intakeMotor};
   Intake mIntake{IntakeMotor};
 
@@ -53,6 +59,7 @@ class RobotContainer {
   WPI_TalonFX mBackR{kBackR};
   WPI_TalonFX mBackL{kBackL};
   DriveTrain mDriveTrain{mFrontR, mFrontL, mBackR, mBackL};
+
 
   void ConfigureBindings();
 };

@@ -8,12 +8,17 @@
 
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
-#include "commands/ActivateIntake.h"
+
+#include "commands/TurretCommand.h"
 #include <frc/smartdashboard/SmartDashboard.h>
+
+#include "commands/ActivateIntake.h"
+
 #include "commands/TankDrive.h"
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems 
+  frc::SmartDashboard::PutData("Turret", new Turret(skycastle));
   
   frc::SmartDashboard::PutData("IntakeButton",new ActivateIntake(mIntake, 5));
   frc::SmartDashboard::PutData("IntakeButton",new ActivateIntake(mIntake, 8));
