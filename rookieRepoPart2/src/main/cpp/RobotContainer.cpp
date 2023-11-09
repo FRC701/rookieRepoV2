@@ -9,12 +9,21 @@
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
 
+#include <frc/smartdashboard/SmartDashboard.h>
+#include "commands/ShooterRun.h"
+#include "commands/ActivateIntake.h"
+=======
+
 #include "commands/TurretCommand.h"
+
 #include <frc/smartdashboard/SmartDashboard.h>
 
 #include "commands/ActivateIntake.h"
 
 #include "commands/TankDrive.h"
+
+  // Initialize all of your commands and subsystems here
+
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems 
@@ -22,6 +31,10 @@ RobotContainer::RobotContainer() {
   
   frc::SmartDashboard::PutData("IntakeButton",new ActivateIntake(mIntake, 5));
   frc::SmartDashboard::PutData("IntakeButton",new ActivateIntake(mIntake, 8));
+  
+  frc::SmartDashboard::PutData("Shoot", new ShooterRun(mShooter, 3000));
+frc::SmartDashboard::PutData("Shoot",new ShooterRun(mShooter, 2700) );
+
   mDriveTrain.SetDefaultCommand
    (
     TankDrive(

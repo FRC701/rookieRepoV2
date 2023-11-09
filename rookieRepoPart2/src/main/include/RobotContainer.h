@@ -6,15 +6,23 @@
 
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandXboxController.h>
-#include <frc/XboxController.h>
+
 
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
+
+#include "subsystems/Shooter.h"
+#include <frc/XboxController.h>
+
+#include "Constants.h"
+=======
 #include "subsystems/Turret.h"
+
 
 #include "subsystems/Intake.h"
 
 #include "subsystems/DriveTrain.h"
+
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -26,6 +34,17 @@
 class RobotContainer {
  public:
   RobotContainer();
+
+
+  frc2::CommandPtr GetAutonomousCommand();
+
+  static constexpr int kShooterMotor{7};
+
+ private:
+  // Replace with CommandPS4Controller or CommandJoystick if needed
+  frc2::CommandXboxController m_driverController{
+      OperatorConstants::kDriverControllerPort};
+
   using WPI_TalonFX = ctre::phoenix::motorcontrol::can::WPI_TalonFX;
 
   frc2::CommandPtr GetAutonomousCommand();
@@ -44,12 +63,19 @@ class RobotContainer {
       OperatorConstants::kDriverControllerPort};
   frc::XboxController driver{0};
 
+
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
 
 
+
+  WPI_TalonFX ShooterM1{kShooterMotor};
+  Shooter mShooter{ShooterM1};
+  
+=======
   WPI_TalonFX skycastle{kTurret};
   Turret mTurret{skycastle};
+
 
   WPI_TalonFX IntakeMotor{intakeMotor};
   Intake mIntake{IntakeMotor};
@@ -59,6 +85,7 @@ class RobotContainer {
   WPI_TalonFX mBackR{kBackR};
   WPI_TalonFX mBackL{kBackL};
   DriveTrain mDriveTrain{mFrontR, mFrontL, mBackR, mBackL};
+
 
 
   void ConfigureBindings();
