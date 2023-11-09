@@ -8,12 +8,28 @@
 
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
+
 #include "commands/TurretCommand.h"
 #include <frc/smartdashboard/SmartDashboard.h>
 
+#include "commands/ActivateIntake.h"
+
+#include "commands/TankDrive.h"
+
 RobotContainer::RobotContainer() {
-  // Initialize all of your commands and subsystems here
+  // Initialize all of your commands and subsystems 
   frc::SmartDashboard::PutData("Turret", new Turret(skycastle));
+  
+  frc::SmartDashboard::PutData("IntakeButton",new ActivateIntake(mIntake, 5));
+  frc::SmartDashboard::PutData("IntakeButton",new ActivateIntake(mIntake, 8));
+  mDriveTrain.SetDefaultCommand
+   (
+    TankDrive(
+      mDriveTrain,
+      [this] { return -driver.GetLeftY(); },
+      [this] { return -driver.GetRightY();}
+    )
+   );
   // Configure the button bindings
   ConfigureBindings();
 }
