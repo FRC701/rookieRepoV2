@@ -10,9 +10,10 @@
 
 #include "Constants.h"
 #include "subsystems/ExampleSubsystem.h"
+
+#include "subsystems/Intake.h"
+=======
 #include "subsystems/DriveTrain.h"
-
-
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -27,6 +28,8 @@ class RobotContainer {
   using WPI_TalonFX = ctre::phoenix::motorcontrol::can::WPI_TalonFX;
 
   frc2::CommandPtr GetAutonomousCommand();
+  
+  static constexpr int intakeMotor{10};
 
   static constexpr int kFrontR{0};
   static constexpr int kFrontL{1};
@@ -41,6 +44,9 @@ class RobotContainer {
 
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
+
+  WPI_TalonFX IntakeMotor{intakeMotor};
+  Intake mIntake{IntakeMotor};
 
   WPI_TalonFX mFrontR{kFrontR};
   WPI_TalonFX mFrontL{kFrontL};
