@@ -10,11 +10,30 @@
 #include "commands/ExampleCommand.h"
 #include <frc/smartdashboard/SmartDashboard.h>
 #include "commands/ShooterRun.h"
+#include "commands/ActivateIntake.h"
+#include <frc/smartdashboard/SmartDashboard.h>
+#include "commands/TankDrive.h"
+
+  // Initialize all of your commands and subsystems here
+
 
 RobotContainer::RobotContainer() {
-  // Initialize all of your commands and subsystems here
-frc::SmartDashboard::PutData("Shoot", new ShooterRun(mShooter, 3000));
+  // Initialize all of your commands and subsystems 
+  
+  frc::SmartDashboard::PutData("IntakeButton",new ActivateIntake(mIntake, 5));
+  frc::SmartDashboard::PutData("IntakeButton",new ActivateIntake(mIntake, 8));
+  
+  frc::SmartDashboard::PutData("Shoot", new ShooterRun(mShooter, 3000));
 frc::SmartDashboard::PutData("Shoot",new ShooterRun(mShooter, 2700) );
+
+  mDriveTrain.SetDefaultCommand
+   (
+    TankDrive(
+      mDriveTrain,
+      [this] { return -driver.GetLeftY(); },
+      [this] { return -driver.GetRightY();}
+    )
+   );
   // Configure the button bindings
   ConfigureBindings();
 }
