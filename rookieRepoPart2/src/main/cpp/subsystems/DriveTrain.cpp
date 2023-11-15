@@ -14,7 +14,6 @@ DriveTrain::DriveTrain(WPI_TalonFX& ID1, WPI_TalonFX& ID2, WPI_TalonFX& ID3, WPI
 {
     mBackR.Follow(mFrontR);
     mBackL.Follow(mFrontL);
-
 }
 
 // This method will be called once per scheduler run
