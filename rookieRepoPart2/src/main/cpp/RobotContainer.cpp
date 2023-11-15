@@ -21,6 +21,8 @@
 
 #include "commands/TankDrive.h"
 
+#include "commands/ArmRun.h"
+
   // Initialize all of your commands and subsystems here
 
 
@@ -32,7 +34,10 @@ RobotContainer::RobotContainer() {
   frc::SmartDashboard::PutData("IntakeButton",new ActivateIntake(mIntake, 8));
   
   frc::SmartDashboard::PutData("Shoot", new ShooterRun(mShooter, 3000));
-frc::SmartDashboard::PutData("Shoot",new ShooterRun(mShooter, 2700) );
+  frc::SmartDashboard::PutData("Shoot",new ShooterRun(mShooter, 2700) );
+
+  frc::SmartDashboard::PutData("MoveArm", new ArmRun(mArm, 242));
+  frc::SmartDashboard::PutData("MovementArm", new ArmRun(mArm, 678));
 
   mDriveTrain.SetDefaultCommand
    (
@@ -42,9 +47,12 @@ frc::SmartDashboard::PutData("Shoot",new ShooterRun(mShooter, 2700) );
       [this] { return -driver.GetRightY();}
     )
    );
+   
   // Configure the button bindings
   ConfigureBindings();
 }
+
+
 
 void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here

@@ -18,10 +18,11 @@
 
 #include "subsystems/Turret.h"
 
-
 #include "subsystems/Intake.h"
 
 #include "subsystems/DriveTrain.h"
+
+#include "subsystems/Arm.h"
 
 
 /**
@@ -54,6 +55,8 @@ class RobotContainer {
 
   static constexpr int kTurret{4};
 
+  static constexpr int kArmMotor{4};
+
  private:
   frc2::CommandXboxController m_driverController{
       OperatorConstants::kDriverControllerPort};
@@ -80,7 +83,9 @@ class RobotContainer {
   WPI_TalonFX mBackR{kBackR};
   WPI_TalonFX mBackL{kBackL};
   DriveTrain mDriveTrain{mFrontR, mFrontL, mBackR, mBackL};
-
+  
+  WPI_TalonFX ArmMotor{kArmMotor};
+  Arm mArm{ArmMotor};
 
 
   void ConfigureBindings();
