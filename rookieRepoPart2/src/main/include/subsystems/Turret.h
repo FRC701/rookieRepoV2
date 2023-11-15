@@ -9,16 +9,18 @@
 
 class Turret : public frc2::SubsystemBase {
  public:
- Turret(WPI_TalonFX& skycastle);
+ Turret(WPI_TalonFX& skycastle, WPI_Pigeon2& TGyro);
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
-  double Spinspeed(double Spin);
+  double Spinspeed(double position);
+  bool IsFwdLimitSwitchHit();
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
   WPI_TalonFX& skycastle;
+  WPI_Pigeon2& TGyro;
 };
