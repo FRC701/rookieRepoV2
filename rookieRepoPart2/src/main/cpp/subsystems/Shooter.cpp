@@ -15,16 +15,43 @@ Shooter::Shooter(WPI_TalonFX &ID1)
 void Shooter::Periodic() {
 frc::SmartDashboard::PutNumber("ShooterRPM" ,ShooterM1.GetSelectedSensorVelocity());
 frc::SmartDashboard::PutNumber("ShooterRPM" , 3);
+frc::SmartDashboard::PutBoolean("IsLimitSwitchHit" ,IsFwdLimitSwitchHit());
 
 }
 
-double Shooter::SETspeed(double Motorspeed)
+double Shooter::SETspeed(double Velocity)
 {
-    ShooterM1.Set(ControlMode::Velocity, Motorspeed);
+    ShooterM1.Set(ControlMode::Velocity, Velocity);
+    return Velocity;
+}
+
+bool Shooter:: IsFwdLimitSwitchHit()
+{
+    return ShooterM1.IsFwdLimitSwitchClosed();
+};
+
+double Shooter:: PercentOutput(double Motorspeed)
+{
+    ashootermm1.Set(ControlMode::PercentOutput, Motorspeed);
     return Motorspeed;
 }
 
-bool Shooter:: isLimitSwitchHit()
+double Shooter:: ShooterStand(double Position)
 {
-    return ShooterM1.IsFwdLimitSwitchClosed();
+    ShooterM1.Set(ControlMode::Position, Position);
+    return Position;
+}
+
+double Shooter:: ShooterVelocity()
+{
+   return ashootermm1.GetSelectedSensorVelocity();
+}
+
+bool Shooter:: Check(int x)
+
+{
+if(x==5)
+    return true; {
+        return false;
+    }
 }

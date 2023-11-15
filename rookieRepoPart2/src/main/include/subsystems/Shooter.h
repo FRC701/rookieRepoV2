@@ -10,18 +10,28 @@
 class Shooter : public frc2::SubsystemBase {
  public:
   Shooter(WPI_TalonFX& ID1);
+  Shooter(WPI_TalonFX& ID2);
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
 
-  double SETspeed(double Motorspeed);
+  double SETspeed(double Velocity);
 
-  bool isLimitSwitchHit();
+  double PercentOutput(double Motorspeed);
 
+  double ShooterStand(double Position);
+
+  double ShooterVelocity();
+
+  bool Check(int x);
+
+  bool IsFwdLimitSwitchHit();
+  
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
   WPI_TalonFX& ShooterM1;
+  WPI_TalonFX& ashootermm1;
 };
