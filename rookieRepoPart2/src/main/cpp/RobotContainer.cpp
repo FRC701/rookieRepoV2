@@ -8,14 +8,46 @@
 
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
+
 #include <frc/smartdashboard/SmartDashboard.h>
+#include "commands/ShooterRun.h"
+#include "commands/ActivateIntake.h"
+
+#include "commands/TurretCommand.h"
+
+#include <frc/smartdashboard/SmartDashboard.h>
+
+#include "commands/ActivateIntake.h"
+
+#include "commands/TankDrive.h"
+
 #include "commands/ArmRun.h"
-RobotContainer::RobotContainer() {
+
   // Initialize all of your commands and subsystems here
 
-frc::SmartDashboard::PutData("MoveArm", new ArmRun(mArm, 242));
-frc::SmartDashboard::PutData("MovementArm", new ArmRun(mArm, 678));
 
+RobotContainer::RobotContainer() {
+  // Initialize all of your commands and subsystems 
+  frc::SmartDashboard::PutData("Turret", new Turret(skycastle));
+  
+  frc::SmartDashboard::PutData("IntakeButton",new ActivateIntake(mIntake, 5));
+  frc::SmartDashboard::PutData("IntakeButton",new ActivateIntake(mIntake, 8));
+  
+  frc::SmartDashboard::PutData("Shoot", new ShooterRun(mShooter, 3000));
+  frc::SmartDashboard::PutData("Shoot",new ShooterRun(mShooter, 2700) );
+
+  frc::SmartDashboard::PutData("MoveArm", new ArmRun(mArm, 242));
+  frc::SmartDashboard::PutData("MovementArm", new ArmRun(mArm, 678));
+
+  mDriveTrain.SetDefaultCommand
+   (
+    TankDrive(
+      mDriveTrain,
+      [this] { return -driver.GetLeftY(); },
+      [this] { return -driver.GetRightY();}
+    )
+   );
+   
   // Configure the button bindings
   ConfigureBindings();
 }
