@@ -8,16 +8,18 @@
 #include "ctre/Phoenix.h"
 class Arm : public frc2::SubsystemBase {
  public:
-  Arm(WPI_TalonFX& ID1);
+  Arm(WPI_TalonFX& ID1, WPI_CANCoder& ID2);
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
   void Periodic() override;
 double Sped(double MotorSpeed);
+bool isLimitSwitchHit();
  private:
  
  WPI_TalonFX& ArmMotor;
+ WPI_CANCoder& canCoder;
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 };
